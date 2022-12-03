@@ -1,4 +1,4 @@
-﻿namespace Puzzle2
+﻿namespace Puzzle02
 {
     public enum Shape
     {

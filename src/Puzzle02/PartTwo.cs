@@ -1,6 +1,6 @@
-﻿namespace Puzzle2
+﻿namespace Puzzle02
 {
-    internal class PartOne
+    internal class PartTwo
     {
         private static readonly Dictionary<string, Shape> _oponnentDecoderMap = new()
         {
@@ -16,11 +16,11 @@
             { Outcome.Win, 6 },
         };
 
-        private static readonly Dictionary<string, Shape> _playerDecoderMap = new()
+        private static readonly Dictionary<string, Outcome> _playerDecoderMap = new()
         {
-            { "X", Shape.Rock },
-            { "Y", Shape.Paper },
-            { "Z", Shape.Scissors },
+            { "X", Outcome.Loss },
+            { "Y", Outcome.Draw },
+            { "Z", Outcome.Win },
         };
 
         private static readonly Dictionary<Shape, int> _shapeValueMap = new()
@@ -48,23 +48,23 @@
                 var columns = line.Split();
 
                 var oponnentShape = _oponnentDecoderMap[columns[0]];
-                var playerShape = _playerDecoderMap[columns[1]];
+                var outcome = _playerDecoderMap[columns[1]];
 
-                var outcome = CalculateOutcome(playerShape, oponnentShape);
+                var playerShape = CalculatePlayerShape(outcome, oponnentShape);
 
                 score += CalculateScore(playerShape, outcome);
             }
 
-            Console.WriteLine($"Part One - Total score: {score}");
+            Console.WriteLine($"Part Two - Total score: {score}");
         }
 
-        private static Outcome CalculateOutcome(Shape player1, Shape player2)
+        private static Shape CalculatePlayerShape(Outcome outcome, Shape player2)
         {
-            return player1 switch
+            return outcome switch
             {
-                Shape.Rock => player2 == Shape.Rock ? Outcome.Draw : (player2 == Shape.Paper ? Outcome.Loss : Outcome.Win),
-                Shape.Paper => player2 == Shape.Paper ? Outcome.Draw : (player2 == Shape.Scissors ? Outcome.Loss : Outcome.Win),
-                Shape.Scissors => player2 == Shape.Scissors ? Outcome.Draw : (player2 == Shape.Rock ? Outcome.Loss : Outcome.Win),
+                Outcome.Loss => player2 == Shape.Rock ? Shape.Scissors : player2 == Shape.Paper ? Shape.Rock : Shape.Paper,
+                Outcome.Draw => player2,
+                Outcome.Win => player2 == Shape.Rock ? Shape.Paper : player2 == Shape.Paper ? Shape.Scissors : Shape.Rock,
                 _ => throw new NotImplementedException(),
             };
         }
