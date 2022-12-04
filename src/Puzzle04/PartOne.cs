@@ -1,0 +1,55 @@
+﻿namespace Puzzle04
+{
+    internal static class PartOne
+    {
+        internal static void Run(string[] lines)
+        {
+            var result = lines.Where(line => !string.IsNullOrWhiteSpace(line))
+               .Select(CreateRanges)
+                .Where(RangeFullyContainTheOther)
+                .Count();
+
+            Console.WriteLine($"How many assignment pairs does one range fully contain the other? {result}");
+        }
+
+        private static ((int, int), (int, int)) CreateRanges(string line)
+        {
+            var array = line.Split('-', ',')
+                .Select(value => int.Parse(value))
+                .ToArray();
+
+            return ((array[0], array[1]), (array[2], array[3]));
+        }
+
+        private static bool RangeFullyContainTheOther(((int start, int end) range1, (int start, int end) range2) ranges)
+        {
+            // range 1: ----------*^^^^^^^^^^^^*----------
+
+            // range 2: --*~~~~*--|------------|----------
+            // range 2: ----------|------------|--*~~~~*--
+
+            // range 2: -----*~~~~*------------|----------
+            // range 2: ----------|------------*~~~~~*----
+
+            // range 2: -----*~~~~|~~*---------|----------
+            // range 2: ----------|---------*~~|~~~~*-----
+
+            // range 2: -----*~~~~|~~~~~~~~~~~~*----------  <<
+            // range 2: ----------*~~~~~~~~~~~~|~~~~*-----  <<
+
+            // range 2: ------*~~~|~~~~~~~~~~~~|~~~*------  <<
+            // range 2: ----------*~~~~~~~~~~~~*----------  <<
+            // range 2: ----------|-*~~~~~~~~*-|----------  <<
+
+            if ((ranges.range1.start <= ranges.range2.start && ranges.range1.end >= ranges.range2.end)
+                || (ranges.range2.start <= ranges.range1.start && ranges.range2.end >= ranges.range1.end))
+            {
+                Console.WriteLine($"{ranges} << one range contains the other");
+                return true;
+            }
+
+            Console.WriteLine(ranges);
+            return false;
+        }
+    }
+}
