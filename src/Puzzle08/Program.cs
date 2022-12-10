@@ -4,12 +4,12 @@ internal class Program
 {
     static void Main(string[] args)
     {
-        //var fileName = @"..\..\..\demo-input.txt";
-        //var fileName = @"..\..\..\demo-left-right.txt";
-        //var fileName = @"..\..\..\demo-right-left.txt";
-        //var fileName = @"..\..\..\demo-top-bottom.txt";
-        //var fileName = @"..\..\..\demo-bottom-top.txt";
-        var fileName = @"..\..\..\input.txt";
+        //var fileName = @"..\..\..\data\demo-input.txt";
+        //var fileName = @"..\..\..\data\demo-left-right.txt";
+        //var fileName = @"..\..\..\data\demo-right-left.txt";
+        //var fileName = @"..\..\..\data\demo-top-bottom.txt";
+        //var fileName = @"..\..\..\data\demo-bottom-top.txt";
+        var fileName = @"..\..\..\data\input.txt";
 
         var text = File.ReadAllText(fileName);
 

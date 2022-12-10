@@ -4,8 +4,8 @@ internal class Program
 {
     static void Main(string[] args)
     {
-        //var fileName = @"..\..\..\demo-input.txt";
-        var fileName = @"..\..\..\input.txt";
+        //var fileName = @"..\..\..\data\demo-input.txt";
+        var fileName = @"..\..\..\data\input.txt";
 
         var text = System.IO.File.ReadAllText(fileName);
 

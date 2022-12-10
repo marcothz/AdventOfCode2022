@@ -1,4 +1,4 @@
-﻿var text = File.ReadAllText(@"..\..\..\input.txt");
+﻿var text = File.ReadAllText(@"..\..\..\data\input.txt");
 
 var lines = text.Split('\n');
 var totalCalories = 0;

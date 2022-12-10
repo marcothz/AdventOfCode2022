@@ -4,8 +4,8 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        //var fileName = @"..\..\..\demo-input.txt";
-        var fileName = @"..\..\..\input.txt";
+        //var fileName = @"..\..\..\data\demo-input.txt";
+        var fileName = @"..\..\..\data\input.txt";
 
         Console.WriteLine(">> PartOne.Run");
         var input = InputLoader.Load(fileName);
