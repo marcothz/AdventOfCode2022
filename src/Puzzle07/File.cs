@@ -1,15 +1,14 @@
-﻿namespace Puzzle07
+﻿namespace Puzzle07;
+
+internal class File
 {
-    internal class File
+    public File(string name, int size)
     {
-        public File(string name, int size)
-        {
-            Name = name;
-            Size = size;
-        }
-
-        public string Name { get; set; }
-
-        public int Size { get; set; }
+        Name = name;
+        Size = size;
     }
+
+    public string Name { get; set; }
+
+    public int Size { get; set; }
 }

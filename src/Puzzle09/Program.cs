@@ -1,24 +1,23 @@
-﻿namespace Puzzle09
+﻿namespace Puzzle09;
+
+internal class Program
 {
-    internal class Program
+    private static void Main(string[] args)
     {
-        private static void Main(string[] args)
-        {
-            //var fileName = @"..\..\..\demo-input.txt";
-            //var fileName = @"..\..\..\demo-input-2.txt";
-            var fileName = @"..\..\..\input.txt";
+        //var fileName = @"..\..\..\data\demo-input.txt";
+        //var fileName = @"..\..\..\data\demo-input-2.txt";
+        var fileName = @"..\..\..\data\input.txt";
 
-            var text = File.ReadAllText(fileName);
+        var text = File.ReadAllText(fileName);
 
-            var lines = text.Split('\n', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+        var lines = text.Split('\n', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
 
-            Console.WriteLine(">> PartOne.Run");
-            PartOne.Run(lines);
+        Console.WriteLine(">> PartOne.Run");
+        PartOne.Run(lines);
 
-            Console.WriteLine();
+        Console.WriteLine();
 
-            Console.WriteLine(">> PartTwo.Run");
-            PartTwo.Run(lines);
-        }
+        Console.WriteLine(">> PartTwo.Run");
+        PartTwo.Run(lines);
     }
 }

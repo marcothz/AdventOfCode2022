@@ -1,15 +1,14 @@
-﻿namespace Puzzle07
+﻿namespace Puzzle07;
+
+internal class ShellCommand
 {
-    internal class ShellCommand
+    public ShellCommand(ShellCommandKind kind, string args)
     {
-        public ShellCommand(ShellCommandKind kind, string args)
-        {
-            Kind = kind;
-            Args = args;
-        }
-
-        public ShellCommandKind Kind { get; }
-
-        public string Args { get; }
+        Kind = kind;
+        Args = args;
     }
+
+    public ShellCommandKind Kind { get; }
+
+    public string Args { get; }
 }

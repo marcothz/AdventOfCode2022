@@ -1,18 +1,17 @@
-﻿namespace Puzzle08
+﻿namespace Puzzle08;
+
+[Flags]
+internal enum Side
 {
-    [Flags]
-    internal enum Side
-    {
-        NotVisible = 0,
+    NotVisible = 0,
 
-        Left = 1,
+    Left = 1,
 
-        Right = 2,
+    Right = 2,
 
-        Top = 4,
+    Top = 4,
 
-        Bottom = 8,
+    Bottom = 8,
 
-        Edge = 16
-    }
+    Edge = 16
 }

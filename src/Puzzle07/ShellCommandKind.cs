@@ -1,11 +1,10 @@
-﻿namespace Puzzle07
+﻿namespace Puzzle07;
+
+internal enum ShellCommandKind
 {
-    internal enum ShellCommandKind
-    {
-        Undefined,
+    Undefined,
 
-        ChangeDirectory,
+    ChangeDirectory,
 
-        List,
-    }
+    List,
 }

@@ -1,83 +1,82 @@
-﻿namespace Puzzle03
+﻿namespace Puzzle03;
+
+internal static class PartTwo
 {
-    internal static class PartTwo
+    private const int MAX_ITEM_ASCII_CODE = 'z';
+    private const int MAX_PRIORITY = 52;
+    private const int MIN_PRIORITY = 1;
+    private static readonly int[] _itemPriorities = new int[MAX_ITEM_ASCII_CODE + 1];
+
+    static PartTwo()
     {
-        private const int MAX_ITEM_ASCII_CODE = 'z';
-        private const int MAX_PRIORITY = 52;
-        private const int MIN_PRIORITY = 1;
-        private static readonly int[] _itemPriorities = new int[MAX_ITEM_ASCII_CODE + 1];
+        var priority = 0;
 
-        static PartTwo()
+        for (char item = 'a'; item <= 'z'; item++)
         {
-            var priority = 0;
+            _itemPriorities[item] = ++priority;
+        }
 
-            for (char item = 'a'; item <= 'z'; item++)
+        for (char item = 'A'; item <= 'Z'; item++)
+        {
+            _itemPriorities[item] = ++priority;
+        }
+    }
+
+    internal static void Run(IEnumerable<string> lines)
+    {
+        var sumOfPriorities = 0;
+        var lineNum = 0;
+        var group = new List<string>();
+
+        foreach (var line in lines)
+        {
+            lineNum++;
+
+            if (group.Count < 3)
             {
-                _itemPriorities[item] = ++priority;
+                group.Add(line);
             }
 
-            for (char item = 'A'; item <= 'Z'; item++)
+            if (group.Count == 3)
             {
-                _itemPriorities[item] = ++priority;
+                sumOfPriorities += ProcessGroup(group.ToArray());
+
+                group.Clear();
             }
         }
 
-        internal static void Run(IEnumerable<string> lines)
+        Console.WriteLine($"Sum of priorities: {sumOfPriorities}");
+    }
+
+    private static void ProcessRucksack(string line, int[] rucksack)
+    {
+        for (int index = 0; index < line.Length; index++)
         {
-            var sumOfPriorities = 0;
-            var lineNum = 0;
-            var group = new List<string>();
+            var item = line[index];
+            var priority = _itemPriorities[item];
+            rucksack[priority]++;
+        }
+    }
 
-            foreach (var line in lines)
-            {
-                lineNum++;
+    private static int ProcessGroup(string[] groupOfLines)
+    {
+        var groupOfRucksacks = new int[groupOfLines.Count()][];
 
-                if (group.Count < 3)
-                {
-                    group.Add(line);
-                }
+        for (int index = 0; index < groupOfRucksacks.Length; index++)
+        {
+            groupOfRucksacks[index] = new int[MAX_PRIORITY + 1];
 
-                if (group.Count == 3)
-                {
-                    sumOfPriorities += ProcessGroup(group.ToArray());
-
-                    group.Clear();
-                }
-            }
-
-            Console.WriteLine($"Sum of priorities: {sumOfPriorities}");
+            ProcessRucksack(groupOfLines[index], groupOfRucksacks[index]);
         }
 
-        private static void ProcessRucksack(string line, int[] rucksack)
+        for (int index = MIN_PRIORITY; index <= MAX_PRIORITY; index++)
         {
-            for (int index = 0; index < line.Length; index++)
+            if (groupOfRucksacks.All(elf => elf[index] > 0))
             {
-                var item = line[index];
-                var priority = _itemPriorities[item];
-                rucksack[priority]++;
+                return index;
             }
         }
 
-        private static int ProcessGroup(string[] groupOfLines)
-        {
-            var groupOfRucksacks = new int[groupOfLines.Count()][];
-
-            for (int index = 0; index < groupOfRucksacks.Length; index++)
-            {
-                groupOfRucksacks[index] = new int[MAX_PRIORITY + 1];
-
-                ProcessRucksack(groupOfLines[index], groupOfRucksacks[index]);
-            }
-
-            for (int index = MIN_PRIORITY; index <= MAX_PRIORITY; index++)
-            {
-                if (groupOfRucksacks.All(elf => elf[index] > 0))
-                {
-                    return index;
-                }
-            }
-
-            throw new Exception("Badge not found");
-        }
+        throw new Exception("Badge not found");
     }
 }

@@ -1,13 +1,12 @@
-﻿namespace Puzzle02
+﻿namespace Puzzle02;
+
+public enum Shape
 {
-    public enum Shape
-    {
-        Undefined,
+    Undefined,
 
-        Rock,
+    Rock,
 
-        Paper,
+    Paper,
 
-        Scissors,
-    }
+    Scissors,
 }

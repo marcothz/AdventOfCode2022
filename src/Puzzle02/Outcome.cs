@@ -1,13 +1,12 @@
-﻿namespace Puzzle02
+﻿namespace Puzzle02;
+
+public enum Outcome
 {
-    public enum Outcome
-    {
-        Undefined,
+    Undefined,
 
-        Draw,
+    Draw,
 
-        Win,
+    Win,
 
-        Loss,
-    }
+    Loss,
 }

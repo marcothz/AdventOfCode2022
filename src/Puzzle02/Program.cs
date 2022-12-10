@@ -1,14 +1,13 @@
-﻿namespace Puzzle02
-{
-    internal class Program
-    {
-        private static void Main(string[] args)
-        {
-            //var fileName = @"..\..\..\demo-input.txt";
-            var fileName = @"..\..\..\input.txt";
+﻿namespace Puzzle02;
 
-            PartOne.Run(fileName);
-            PartTwo.Run(fileName);
-        }
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        //var fileName = @"..\..\..\demo-input.txt";
+        var fileName = @"..\..\..\input.txt";
+
+        PartOne.Run(fileName);
+        PartTwo.Run(fileName);
     }
 }
